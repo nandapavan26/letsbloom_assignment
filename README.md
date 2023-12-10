@@ -1,4 +1,4 @@
-# Library-management-API
+# Library-Management-API
 
 ## Installation
 
