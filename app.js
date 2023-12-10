@@ -66,24 +66,20 @@ app.put('/api/books/:id',async (req,res)=>{
         const {id} = req.params;
 
         const check = await Book.findById(id);
-        if(!check){
-            res.status(500).send('no book exits with the id');
-        }
-        else {
-            const {title,author,genre} = req.body;
-            const checkBooks = await Book.find({title:title,author:author,genre:genre});
+        
+        const {title,author,genre} = req.body;
+        const checkBooks = await Book.find({title:title,author:author,genre:genre});
 
-            if(checkBooks.length==1)
-            {
-                console.log('book with same details is found in database');
-                res.status(200).send('book with same details is found in database');
-            }else {
-                const updateBook = await Book.findByIdAndUpdate(id,{title:title,author:author,genre:genre},{new:true,runValidators:true});
-                console.log(updateBook);
-                console.log(updateBook);
-                console.log('New Book is updated into the Database');
-                res.status(200).send('new book details are updated');
-            }
+        if(checkBooks.length==1)
+        {
+            console.log('book with same details is found in database');
+            res.status(200).send('book with same details is found in database');
+        }else {
+            const updateBook = await Book.findByIdAndUpdate(id,{title:title,author:author,genre:genre},{new:true,runValidators:true});
+            console.log(updateBook);
+            console.log(updateBook);
+            console.log('New Book is updated into the Database');
+            res.status(200).send('new book details are updated');
         }
         
     }catch(err){
