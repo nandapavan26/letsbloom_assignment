@@ -1,4 +1,4 @@
-## Instalation
+## Installation
 
 To install the required dependencies, run the following commands:
 
