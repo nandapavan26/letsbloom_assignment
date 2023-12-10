@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 
-function checker(value) {
+function checker(value) {  // string must start with alphabet characters and may constain spaces
     const regex = /^[A-Za-z][A-Za-z ]*$/;
     return regex.test(value);
   }

@@ -21,7 +21,7 @@ app.use(bodyParser.json())
 
 
 
-app.get('/api/books',async (req,res)=>{
+app.get('/api/books',async (req,res)=>{ // getting all books from end point
 
     try{
         const books = await Book.find({});
@@ -33,7 +33,7 @@ app.get('/api/books',async (req,res)=>{
     }
 });
 
-app.post('/api/books',async (req,res)=>{
+app.post('/api/books',async (req,res)=>{ // posting a new book in database endpoint
 
     try{
         const {title,author,genre} = req.body;
@@ -41,7 +41,7 @@ app.post('/api/books',async (req,res)=>{
         const checkBook = await Book.find({title:title,author:author,genre:genre});
 
 
-        if(!checkBook.length){
+        if(!checkBook.length){// checking for duplication
             const newBook = new Book({title:title,author:author,genre:genre});
             await newBook.save();
             console.log('a new book is inserted into database');
@@ -60,7 +60,7 @@ app.post('/api/books',async (req,res)=>{
 })
 
 
-app.put('/api/books/:id',async (req,res)=>{
+app.put('/api/books/:id',async (req,res)=>{ // updating a book endpoint
 
     try{
         const {id} = req.params;
@@ -70,7 +70,7 @@ app.put('/api/books/:id',async (req,res)=>{
         const {title,author,genre} = req.body;
         const checkBooks = await Book.find({title:title,author:author,genre:genre});
 
-        if(checkBooks.length==1)
+        if(checkBooks.length==1)// checking for dplication
         {
             console.log('book with same details is found in database');
             res.status(200).send('book with same details is found in database');
@@ -86,7 +86,7 @@ app.put('/api/books/:id',async (req,res)=>{
         console.log(req.body,req.params.id);
         console.log(err);
         let message = err.message;
-        if(err.name=="CastError")message = "no book exist in the database with given id"
+        if(err.name=="CastError")message = "no book exist in the database with given id" // no id for the given book in database
         res.status(500).send(message);
     }
 });
