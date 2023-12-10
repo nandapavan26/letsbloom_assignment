@@ -10,7 +10,7 @@ npm install
 Once the packages are installed, you can start the application using the following command:
 
 ```
-npm run seed 
+node seed.js
 
 ```
 
@@ -19,7 +19,7 @@ The above command is the provided method to seed the data base with mockdata.
 then next run the below command to start the application
 
 ```
-npm start
+node app.js
 
 ```
 
